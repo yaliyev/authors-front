@@ -1,0 +1,42 @@
+.authorsContainer {
+    padding-inline: 100px;
+    padding-top: 120px;
+}
+
+.authorOperations {
+    display: flex;
+    column-gap: 10px;
+}
+
+.authorOperationsInput,
+.authorOperationsSelect {
+    outline: none;
+    border: 1px solid #E8E7E8;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.authorCards {
+    margin-top: 20px;
+}
+
+.authorCard {
+    margin-top: 10px;
+}
+
+.authorCardImage{
+    height: 280px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 650px) {
+    .authorsContainer {
+        padding-top: 20px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .authorOperations{
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}

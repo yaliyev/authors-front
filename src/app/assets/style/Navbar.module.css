@@ -1,12 +1,14 @@
 
 .navigationBar{
-    
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #010001;
     /* height: 100px; */
     padding: 10px 70px;
     user-select: none;
+    z-index: 5;
 }
 .navigationBar *{
     color: white;
@@ -36,8 +38,9 @@
 .navigationBarMenuList li a{
   text-decoration: none;
 }
-@media screen and (max-width: 628px) {
+@media screen and (max-width: 650px) {
     .navigationBar{
+        position: static;
         flex-direction: column;
         align-items: center;
     }
@@ -49,7 +52,7 @@
         justify-content: space-between;
     }
 }
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
     .navigationBarMenuList{
         flex-direction: column;
         align-items: center;
