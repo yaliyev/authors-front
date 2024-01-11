@@ -1,0 +1,58 @@
+
+.navigationBar{
+    
+    display: flex;
+    justify-content: space-between;
+    background-color: #010001;
+    /* height: 100px; */
+    padding: 10px 70px;
+    user-select: none;
+}
+.navigationBar *{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.navigationBarTitle,.navigationBarMenu{
+    /* margin-top: 40px; */
+}
+.navigationBarTitle{
+    display: flex;
+    column-gap: 10px;
+  
+}
+.navigationBarTitleMain{
+    font-size: 40px;
+
+}
+.navigationBarTitleSecond{
+    font-size: 20px;
+}
+.navigationBarMenuList{
+    display: flex;
+    list-style-type: none;
+    column-gap: 10px;
+    margin-top: 15px;
+}
+.navigationBarMenuList li a{
+  text-decoration: none;
+}
+@media screen and (max-width: 628px) {
+    .navigationBar{
+        flex-direction: column;
+        align-items: center;
+    }
+    .navigationBarMenu{
+        width: 100%;
+    }
+    .navigationBarMenuList{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (max-width: 405px) {
+    .navigationBarMenuList{
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+    }
+}
