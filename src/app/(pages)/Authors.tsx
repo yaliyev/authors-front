@@ -98,7 +98,7 @@ const Authors = (props: Props) => {
             {searchAuthorCards && searchAuthorCards.map((card: any, index: any) => {
               return <div key={index} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                 <div className={`card ${styles.authorCard}`} >
-                  <img onClick={() => { router.push(`/authors/${card.id}`) }} className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap" />
+                  <img onClick={() => { router.push(`/authors/${card._id}`) }} className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap" />
                   <div className="card-body">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text">{new Date().getFullYear() - card.birthYear} years old</p>
