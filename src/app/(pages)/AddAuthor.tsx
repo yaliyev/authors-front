@@ -1,50 +1,106 @@
+"use client"
 import React from 'react'
 
 import styles from '../assets/style/AddAuthor.module.css';
 
+import { AuthorValidationSchema } from '../validation/authorValidation';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { NextPage } from 'next';
+import { useFormik } from 'formik';
+
+
 type Props = {}
 
+
+
+
 const AddAuthor = (props: Props) => {
+
+  const formik = useFormik({
+    validationSchema: toFormikValidationSchema(AuthorValidationSchema),
+    initialValues: {
+      name: '',
+      birthYear: '',
+      genre: '',
+      isDead: '',
+      gender: '',
+      authorImage: ''
+    },
+    onSubmit: (values, actions) => {
+    
+      console.log(values);
+      
+
+
+    }
+  });
+
   return (
     <div className={styles.addAuthorFormContainer}>
       <h2 className={styles.addAuthorTitle}>Add Author</h2>
-      <form className={styles.addAuthorForm}>
+      <form onSubmit={formik.handleSubmit} className={styles.addAuthorForm} encType="multipart/form-data">
         <div className={styles.addAuthorFormElement}>
-           <input className={styles.addAuthorInputElement} placeholder="Name" type="text" />
+          <input name='name' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorInputElement} placeholder="Name" type="text" />
+        </div>
+
+        <div>
+          {formik.errors.name && formik.touched.name && <div style={{ color: 'red' }}>{formik.errors.name}</div>}
+        </div>
+
+
+        <div className={styles.addAuthorFormElement}>
+          <input name='birthYear' value={formik.values.birthYear} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorInputElement} placeholder="Birth Year:" type="text" />
+        </div>
+
+        <div>
+          {formik.errors.birthYear && formik.touched.birthYear && <div style={{ color: 'red' }}>{formik.errors.birthYear}</div>}
         </div>
 
         <div className={styles.addAuthorFormElement}>
-           <input className={styles.addAuthorInputElement} placeholder="Birth Year:" type="text" />
+          <input name='genre' value={formik.values.genre} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorInputElement} placeholder="Genre:" type="text" />
+        </div>
+
+        <div>
+          {formik.errors.genre && formik.touched.genre && <div style={{ color: 'red' }}>{formik.errors.genre}</div>}
         </div>
 
         <div className={styles.addAuthorFormElement}>
-           <input className={styles.addAuthorInputElement} placeholder="Genre:" type="text" />
-        </div>
-
-        <div className={styles.addAuthorFormElement}>
-        <select className={styles.addAuthorFormSelectElement}>
+          <select name='isDead' defaultValue={formik.values.isDead} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
             <option defaultValue="" >is Dead</option>
             <option value="true">True</option>
             <option value="false">False</option>
           </select>
         </div>
 
+        <div>
+          {formik.errors.isDead && formik.touched.isDead && <div style={{ color: 'red' }}>{formik.errors.isDead}</div>}
+        </div>
+
         <div className={styles.addAuthorFormElement}>
-        <select className={styles.addAuthorFormSelectElement}>
+          <select name='gender' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
             <option defaultValue="" >Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
         </div>
 
-        <div className={styles.addAuthorFormElement}>
-        <button className={`btn btn-secondary ${styles.addAuthorFormButtonElement}`}>Click to upload image</button>
+        <div>
+          {formik.errors.gender && formik.touched.gender && <div style={{ color: 'red' }}>{formik.errors.gender}</div>}
         </div>
 
         <div className={styles.addAuthorFormElement}>
-        <button className={`btn btn-primary px-5 ${styles.addAuthorSubmitButtonElement}`}>Add</button>
+          <input name='authorImage' value={formik.values.authorImage} onChange={formik.handleChange} onBlur={formik.handleBlur} type='file' className={` ${styles.addAuthorFormButtonElement}`} />
         </div>
 
+        <div>
+          {formik.errors.authorImage && formik.touched.authorImage && <div style={{ color: 'red' }}>{formik.errors.authorImage}</div>}
+        </div>
+
+        <div className={styles.addAuthorFormElement}>
+          <button  type='submit' className={`btn btn-primary px-5 ${styles.addAuthorSubmitButtonElement}`}>Add</button>
+        </div>
+
+       
       </form>
 
     </div>
