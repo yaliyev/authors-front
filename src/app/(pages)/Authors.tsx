@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Swal from 'sweetalert2'
 import styles from '../assets/style/Authors.module.css';
@@ -12,12 +12,16 @@ const Authors = (props: Props) => {
 
 
   const [authorCards, setAuthorCards] = useState<any>([]);
+  const [searchAuthorCards, setSearchAuthorCards] = useState<any>([]);
+
+  const searchRef  = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     async function loadAuthors() {
       const data = await getAuthors();
 
       setAuthorCards(data);
+      setSearchAuthorCards(data);
     }
 
     loadAuthors();
@@ -56,7 +60,15 @@ const Authors = (props: Props) => {
       <Navbar />
       <div className={styles.authorsContainer}>
         <div className={styles.authorOperations}>
-          <input className={styles.authorOperationsInput} placeholder='Search Author' type="text" />
+          <input onChange={()=>{ 
+            let searchResult = authorCards.filter((author:any)=>{
+              if(author.name.toLowerCase().indexOf( searchRef.current?.value.toLowerCase())> -1){
+                return author;
+              }
+            })
+            setSearchAuthorCards(searchResult);
+            
+          }} ref={searchRef} className={styles.authorOperationsInput} placeholder='Search Author' type="text" />
           <select className={styles.authorOperationsSelect}>
             <option value="">Gender</option>
             <option value="male">Male</option>
@@ -68,7 +80,7 @@ const Authors = (props: Props) => {
 
         <div className={styles.authorCards}>
           <div className="row">
-            {authorCards && authorCards.map((card: any, index: any) => {
+            {searchAuthorCards && searchAuthorCards.map((card: any, index: any) => {
               return <div key={index} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                 <div className={`card ${styles.authorCard}`} >
                   <img onClick={() => { router.push(`/authors/${card.id}`) }} className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap" />
