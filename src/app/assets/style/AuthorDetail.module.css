@@ -1,0 +1,48 @@
+.authorDetailContainer{
+    padding-inline: 100px;
+    padding-top: 120px;
+}
+.authorDetailImage{
+    width: 500px;
+    height: 400px;
+}
+.authorDetailImageSource{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.authorDetail{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+/* .authorDetailTitle{
+    transform: translateX(30%);
+} */
+.authorDetailElement{
+    font-size: 20px;
+    margin-top: 10px;
+    width: 200px;
+    transform: translateX(10%);
+}
+.authorDetailElementTitle{
+    font-weight: bold;
+}
+.authorDetailButton{
+    margin-top: 20px;
+    width: 200px;
+}
+@media screen and (max-width: 996px) {
+    .authorDetailImage{
+        width: 100%;
+        height: auto;
+    }
+    .authorDetail{
+        align-items: center;
+    }
+    
+   
+
+}

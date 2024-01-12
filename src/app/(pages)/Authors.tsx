@@ -1,12 +1,14 @@
+"use client"
 import React from 'react'
 import Navbar from '../components/Navbar'
 
 import styles from '../assets/style/Authors.module.css';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+import { useRouter } from 'next/navigation'
 type Props = {}
 
 const Authors = (props: Props) => {
+  const router = useRouter();
   return (
     <>
       <Navbar />
@@ -22,7 +24,7 @@ const Authors = (props: Props) => {
         
         <div className={styles.authorCards}>
           <div className="row">
-            <div className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <div onClick={()=>{router.push('/authors/2')}} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
               <div className={`card ${styles.authorCard}`} > 
                 <img className={`card-img-top ${styles.authorCardImage}`} src={"https://hips.hearstapps.com/hmg-prod/images/gettyimages-1061157246.jpg"} alt="Card image cap"/>
                   <div className="card-body">
