@@ -16,6 +16,8 @@ const Authors = (props: Props) => {
 
   const searchRef  = useRef<HTMLInputElement>(null);
 
+  const genderRef  = useRef<HTMLSelectElement>(null);
+
   useEffect(() => {
     async function loadAuthors() {
       const data = await getAuthors();
@@ -69,7 +71,20 @@ const Authors = (props: Props) => {
             setSearchAuthorCards(searchResult);
             
           }} ref={searchRef} className={styles.authorOperationsInput} placeholder='Search Author' type="text" />
-          <select className={styles.authorOperationsSelect}>
+          <select onChange={()=>{
+            if(genderRef.current?.value == ""){
+               setSearchAuthorCards(authorCards);
+            }else{
+              let searchResult = authorCards.filter((author:any)=>{
+                if(author.gender.toLowerCase() == genderRef.current?.value.toLowerCase()){
+                  return author;
+                }
+              })
+              
+              setSearchAuthorCards(searchResult);
+            }
+            
+          }} ref={genderRef} className={styles.authorOperationsSelect}>
             <option value="">Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
