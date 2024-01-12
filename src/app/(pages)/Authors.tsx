@@ -15,8 +15,8 @@ const Authors = (props: Props) => {
           <input className={styles.authorOperationsInput} placeholder='Search Author' type="text" />
           <select className={styles.authorOperationsSelect}>
             <option value="">Gender</option>
-            <option value="Male">Male</option>
-            <option value="Male">Female</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
         

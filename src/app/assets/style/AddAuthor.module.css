@@ -1,0 +1,53 @@
+.addAuthorFormContainer {
+    padding-inline: 100px;
+    padding-top: 120px;
+    width: 40%;
+    margin: auto;
+}
+
+.addAuthorFormContainer * {
+    font-family: Verdana;
+}
+
+.addAuthorTitle {
+    text-align: center;
+}
+
+.addAuthorForm {
+    display: block;
+    width: 300px;
+    margin: auto;
+}
+
+.addAuthorForm .addAuthorFormElement {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.addAuthorForm .addAuthorFormElement .addAuthorInputElement {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+.addAuthorForm .addAuthorFormElement .addAuthorInputElement:focus{
+    outline: none;
+}
+
+.addAuthorFormSelectElement {
+    width: 100%;
+    outline: none;
+    border: 1px solid #E8E7E8;
+    border-radius: 4px;
+    padding: 8px;
+    
+}
+
+.addAuthorFormButtonElement {
+    border: none;
+    width: 100%;
+}
+.addAuthorSubmitButtonElement {
+ width: 100%;
+}
