@@ -1,27 +1,54 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-
+import Swal from 'sweetalert2'
 import styles from '../assets/style/Authors.module.css';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from 'next/navigation'
-import { getAuthors } from '../services/api/author_request';
+import { deleteAuthorApi, getAuthors } from '../services/api/author_request';
 type Props = {}
 
 const Authors = (props: Props) => {
 
- 
-  const [authorCards,setAuthorCards] =  useState<any>([]);
 
-  useEffect(()=>{
-      async function loadAuthors(){
-        const data = await getAuthors();
+  const [authorCards, setAuthorCards] = useState<any>([]);
 
+  useEffect(() => {
+    async function loadAuthors() {
+      const data = await getAuthors();
+
+      setAuthorCards(data);
+    }
+
+    loadAuthors();
+  }, []);
+
+  async function deleteAuthor(id: string, index: number) {
+
+    Swal.fire({
+      title: "Do you want to delete author?",
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+      timer:1500
+    }).then(async(result) => {
+
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "", "success");
+        await deleteAuthorApi(id);
+
+        const data = [...authorCards];
+
+        data.splice(index, 1);
         setAuthorCards(data);
       }
+    });
 
-      loadAuthors();
-  },[]);
+
+
+
+
+  }
 
   const router = useRouter();
   return (
@@ -37,38 +64,38 @@ const Authors = (props: Props) => {
           </select>
         </div>
 
-        
-        
+
+
         <div className={styles.authorCards}>
           <div className="row">
-          {authorCards&&authorCards.map((card:any,index:any)=>{
-            return <div key={index} onClick={()=>{router.push(`/authors/${card.id}`)}} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-            <div className={`card ${styles.authorCard}`} > 
-              <img className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap"/>
-                <div className="card-body">
-                  <h5 className="card-title">{card.name}</h5>
-                  <p className="card-text">{new Date().getFullYear() - card.birthYear} years old</p>
-                  <p className="card-text">Genre: {card.genre}</p>
-                  <p className="card-text">Gender: {card.gender}</p>
-                  <div className='d-flex justify-content-center '>
-                    <button className='btn btn-danger'>DELETE</button>
+            {authorCards && authorCards.map((card: any, index: any) => {
+              return <div key={index} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                <div className={`card ${styles.authorCard}`} >
+                  <img onClick={() => { router.push(`/authors/${card.id}`) }} className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap" />
+                  <div className="card-body">
+                    <h5 className="card-title">{card.name}</h5>
+                    <p className="card-text">{new Date().getFullYear() - card.birthYear} years old</p>
+                    <p className="card-text">Genre: {card.genre}</p>
+                    <p className="card-text">Gender: {card.gender}</p>
+                    <div className='d-flex justify-content-center '>
+                      <button onClick={() => { deleteAuthor(card._id, index) }} className='btn btn-danger'>DELETE</button>
+                    </div>
                   </div>
                 </div>
-            </div>
-          </div>;
-          })}
-            
+              </div>;
+            })}
 
-           
-           
 
-            
 
-            
 
-            
 
-            
+
+
+
+
+
+
+
           </div>
         </div>
       </div>
