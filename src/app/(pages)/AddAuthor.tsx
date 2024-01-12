@@ -7,7 +7,11 @@ import { AuthorValidationSchema } from '../validation/authorValidation';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { NextPage } from 'next';
 import { useFormik } from 'formik';
+import { uploadFile } from '../services/api/uploader_request';
+import { log } from 'console';
+import { postAuthor } from '../services/api/author_request';
 
+import Swal from 'sweetalert2';
 
 type Props = {}
 
@@ -17,7 +21,7 @@ type Props = {}
 const AddAuthor = (props: Props) => {
 
   const formik = useFormik({
-    validationSchema: toFormikValidationSchema(AuthorValidationSchema),
+   validationSchema: toFormikValidationSchema(AuthorValidationSchema),
     initialValues: {
       name: '',
       birthYear: '',
@@ -26,11 +30,25 @@ const AddAuthor = (props: Props) => {
       gender: '',
       authorImage: ''
     },
-    onSubmit: (values, actions) => {
+    onSubmit: async(values, actions) => {
+    let element = document.getElementById('authorImage') as HTMLInputElement;
+    let file = element.files![0];
     
-      console.log(values);
-      
 
+   
+
+   let uploadedFile = await uploadFile(file);
+
+   let author = {...values,authorImage: uploadedFile.url};
+
+
+    await postAuthor(author);
+    
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "Author added",
+    });
 
     }
   });
@@ -89,7 +107,8 @@ const AddAuthor = (props: Props) => {
         </div>
 
         <div className={styles.addAuthorFormElement}>
-          <input name='authorImage' value={formik.values.authorImage} onChange={formik.handleChange} onBlur={formik.handleBlur} type='file' className={` ${styles.addAuthorFormButtonElement}`} />
+          <input id='authorImage'
+           name='authorImage' value={formik.values.authorImage} onChange={formik.handleChange} onBlur={formik.handleBlur} type='file' className={` ${styles.addAuthorFormButtonElement}`} />
         </div>
 
         <div>
