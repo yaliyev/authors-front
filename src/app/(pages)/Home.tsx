@@ -41,7 +41,7 @@ const Home = () => {
                     onSwiper={(swiper) => {}}
                 >
                     {authors&&authors.map((author:any,index:any)=>{
-                        return <SwiperSlide className={styles.swiperSlide}>
+                        return <SwiperSlide key={index} className={styles.swiperSlide}>
                         <img className={styles.swiperSlideImage} src={author.authorImage} alt="" />
                         </SwiperSlide>;
                     })}

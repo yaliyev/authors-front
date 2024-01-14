@@ -18,7 +18,7 @@
 .navigationBarTitle{
     display: flex;
     column-gap: 10px;
-  
+    cursor: pointer;
 }
 .navigationBarTitleMain{
     font-size: 40px;

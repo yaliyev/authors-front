@@ -1,16 +1,19 @@
+"use client"
 import React from 'react'
 
 import styles from '../assets/style/Navbar.module.css';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type Props = {
 
 }
 
 const Navbar = (props: Props) => {
+    const router = useRouter();
     return (
-        <div className={styles.navigationBar}>
-            <div className={styles.navigationBarTitle}>
+        <div  className={styles.navigationBar}>
+            <div onClick={()=>{router.push('/')}} className={styles.navigationBarTitle}>
                 <div className={styles.navigationBarTitleMain}>
                     Authors
                 </div>
