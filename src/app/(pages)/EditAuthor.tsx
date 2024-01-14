@@ -66,19 +66,11 @@ const EditAuthor = (props: Props) => {
           text: "Author edited",
           timer: 1500
         }) .then(()=>{
-         // router.push(`/authors/${author!._id}`);
+          router.push(`/authors/${author!._id}`);
         })
       }
 
       
-     
-
-
-      
-      
-
-
-     
 
     }
   });
@@ -163,8 +155,8 @@ const EditAuthor = (props: Props) => {
         <div className={styles.addAuthorFormElement}>
           <select ref={genderRef} name='gender' value={formik.values.gender} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
             <option value="">Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
 
@@ -187,7 +179,7 @@ const EditAuthor = (props: Props) => {
         </div>
 
         <div className={styles.addAuthorFormElement}>
-          <button type='submit' className={`btn btn-primary px-5 ${styles.addAuthorSubmitButtonElement}`}>Add</button>
+          <button type='submit' className={`btn btn-primary px-5 ${styles.addAuthorSubmitButtonElement}`}>Edit</button>
         </div>
 
 
