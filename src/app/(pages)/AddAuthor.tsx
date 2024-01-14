@@ -94,7 +94,7 @@ const AddAuthor = (props: Props) => {
 
         <div className={styles.addAuthorFormElement}>
           <select name='isDead' defaultValue={formik.values.isDead} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
-            <option defaultValue="" >is Dead</option>
+            <option value="" >is Dead</option>
             <option value="true">True</option>
             <option value="false">False</option>
           </select>
@@ -106,7 +106,7 @@ const AddAuthor = (props: Props) => {
 
         <div className={styles.addAuthorFormElement}>
           <select name='gender' value={formik.values.gender} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
-            <option defaultValue="" >Gender</option>
+            <option value="" >Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
