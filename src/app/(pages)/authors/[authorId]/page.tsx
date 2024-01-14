@@ -1,13 +1,16 @@
 "use client"
 import Navbar from '@/app/components/Navbar'
-import { useRouter } from 'next/router'
+
 import React, { useEffect, useState } from 'react'
 import styles from '../../../assets/style/AuthorDetail.module.css';
 import "../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { getAuthorById } from '@/app/services/api/author_request';
+import { useRouter } from 'next/navigation';
 type Props = {}
 
 const AuthorDetail = (props: { params: any }) => {
+
+  const router = useRouter();
 
 
   const [author, setAuthor] = useState<Author>();
@@ -38,7 +41,7 @@ const AuthorDetail = (props: { params: any }) => {
             </div>
             <div className="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12">
               <div className={styles.authorDetailButtons}>
-                <button className={`btn btn-warning text-white ${styles.authorDetailButton}`}>Edit Author</button>
+                <button onClick={()=>{router.push(`/authors/${author._id}/editAuthor`)}} className={`btn btn-warning text-white ${styles.authorDetailButton}`}>Edit Author</button>
                 <button className={`btn btn-success text-white ${styles.authorDetailButton}`}>Add book</button>
               </div>
 
