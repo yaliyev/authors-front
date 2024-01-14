@@ -15,7 +15,7 @@ type Props = {}
 
 const Home = () => {
 
-    const [authors,setAuthors] = useState<any>();
+    const [authors,setAuthors] = useState<Author[]>();
 
     useEffect(()=>{
 
@@ -40,7 +40,7 @@ const Home = () => {
                     onSlideChange={() => {}}
                     onSwiper={(swiper) => {}}
                 >
-                    {authors&&authors.map((author:any,index:any)=>{
+                    {authors&&authors.map((author:Author,index:any)=>{
                         return <SwiperSlide key={index} className={styles.swiperSlide}>
                         <img className={styles.swiperSlideImage} src={author.authorImage} alt="" />
                         </SwiperSlide>;

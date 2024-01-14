@@ -12,6 +12,7 @@ import { log } from 'console';
 import { postAuthor } from '../services/api/author_request';
 
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
@@ -19,6 +20,8 @@ type Props = {}
 
 
 const AddAuthor = (props: Props) => {
+
+  const router = useRouter();
 
   const formik = useFormik({
    validationSchema: toFormikValidationSchema(AuthorValidationSchema),
@@ -48,7 +51,10 @@ const AddAuthor = (props: Props) => {
       icon: "success",
       title: "Success",
       text: "Author added",
-    });
+      timer: 1500
+    }).then(()=>{
+     router.push("/authors");
+    })
 
     }
   });
@@ -95,7 +101,7 @@ const AddAuthor = (props: Props) => {
         </div>
 
         <div className={styles.addAuthorFormElement}>
-          <select name='gender' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
+          <select name='gender' value={formik.values.gender} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorFormSelectElement}>
             <option defaultValue="" >Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>

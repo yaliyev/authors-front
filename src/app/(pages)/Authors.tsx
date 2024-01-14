@@ -11,8 +11,8 @@ type Props = {}
 const Authors = (props: Props) => {
 
 
-  const [authorCards, setAuthorCards] = useState<any>([]);
-  const [searchAuthorCards, setSearchAuthorCards] = useState<any>([]);
+  const [authorCards, setAuthorCards] = useState<Author[]>([]);
+  const [searchAuthorCards, setSearchAuthorCards] = useState<Author[]>([]);
 
   const searchRef  = useRef<HTMLInputElement>(null);
 
@@ -96,7 +96,7 @@ const Authors = (props: Props) => {
 
         <div className={styles.authorCards}>
           <div className="row">
-            {searchAuthorCards && searchAuthorCards.map((card: any, index: any) => {
+            {searchAuthorCards && searchAuthorCards.map((card: Author, index: any) => {
               return <div key={index} className="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                 <div className={`card ${styles.authorCard}`} >
                   <img onClick={() => { router.push(`/authors/${card._id}`) }} className={`card-img-top ${styles.authorCardImage}`} src={card.authorImage} alt="Card image cap" />
