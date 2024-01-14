@@ -1,51 +1,55 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from 'react'
 
 import styles from '../assets/style/Home.module.css';
 import Navbar from '../components/Navbar';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-
-import {Swiper, SwiperSlide} from "swiper/react";
-
-import '../../../node_modules/swiper/swiper-bundle.css';
-
-import { A11y, EffectCube, Navigation, Pagination, Scrollbar } from 'swiper/modules';
-
-
-
+import 'swiper/css';
+import { getAuthors } from '../services/api/author_request';
 
 type Props = {}
 
 
 
 const Home = () => {
+
+    const [authors,setAuthors] = useState<any>();
+
+    useEffect(()=>{
+
+        async function loadAuthors() {
+            const data = await getAuthors();
+      
+            setAuthors(data);
+          }
+      
+          loadAuthors();
+
+    },[])
+
     return (
         <>
             <Navbar />
             <div className={styles.home}>
-                {/* <Swiper
-                    modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
+
+                <Swiper
                     spaceBetween={50}
-                    slidesPerView={3}
-                    navigation
-                    pagination={{ clickable: true }}
-                    scrollbar={{ draggable: true }}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    effect={"cube"}
-                    cubeEffect={{
-                        shadow: true,
-                        slideShadows: true,
-                        shadowOffset: 20,
-                        shadowScale: 0.94,
-                    }}
+                    slidesPerView={1}
+                    onSlideChange={() => {}}
+                    onSwiper={(swiper) => {}}
                 >
+                    {authors&&authors.map((author:any,index:any)=>{
+                        return <SwiperSlide className={styles.swiperSlide}>
+                        <img className={styles.swiperSlideImage} src={author.authorImage} alt="" />
+                        </SwiperSlide>;
+                    })}
                     
-                        <SwiperSlide>
-                            <img src={"https://hips.hearstapps.com/hmg-prod/images/gettyimages-1061157246.jpg"}  />
-                        </SwiperSlide>
+                   
+                   
                     
-                </Swiper> */}
+                </Swiper>
 
                 {/* <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-1061157246.jpg" alt="" /> */}
 

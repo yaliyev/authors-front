@@ -47,6 +47,7 @@ const Authors = (props: Props) => {
 
         data.splice(index, 1);
         setAuthorCards(data);
+        setSearchAuthorCards(data);
       }
     });
 
