@@ -31,7 +31,8 @@ const AddAuthor = (props: Props) => {
       genre: '',
       isDead: '',
       gender: '',
-      authorImage: ''
+      authorImage: '',
+      bio: ''
     },
     onSubmit: async(values, actions) => {
     let element = document.getElementById('authorImage') as HTMLInputElement;
@@ -45,16 +46,19 @@ const AddAuthor = (props: Props) => {
    let author = {...values,authorImage: uploadedFile.url};
 
 
-    await postAuthor(author);
+    let response =await postAuthor(author);
     
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: "Author added",
-      timer: 1500
-    }).then(()=>{
-     router.push("/authors");
-    })
+    if(response.status == 201){
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Author added",
+        timer: 1500
+      }) .then(()=>{
+       router.push("/authors");
+      })
+    }
+    
 
     }
   });
@@ -119,6 +123,11 @@ const AddAuthor = (props: Props) => {
 
         <div>
           {formik.errors.authorImage && formik.touched.authorImage && <div style={{ color: 'red' }}>{formik.errors.authorImage}</div>}
+        </div>
+
+        <div className={styles.addAuthorFormElement}>
+          <input placeholder='bio'
+           name='bio' className={styles.addAuthorInputElement} value={formik.values.bio} onChange={formik.handleChange} onBlur={formik.handleBlur} type='text'  />
         </div>
 
         <div className={styles.addAuthorFormElement}>
