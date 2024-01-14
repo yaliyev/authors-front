@@ -5,5 +5,6 @@ type Author = {
     genre: string,
     isDead: boolean,
     gender: string,
-    authorImage: string
+    authorImage: string,
+    bio: string
 }

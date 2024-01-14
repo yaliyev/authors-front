@@ -30,9 +30,16 @@
 .authorDetailElementTitle{
     font-weight: bold;
 }
+.authorDetailButtons{
+    width: 220px;
+    margin: auto;
+    display: flex;
+    justify-content: start;
+    column-gap: 10px;
+}
 .authorDetailButton{
     margin-top: 20px;
-    width: 200px;
+    /* width: 100px; */
 }
 @media screen and (max-width: 996px) {
     .authorDetailImage{
