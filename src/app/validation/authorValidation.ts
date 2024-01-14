@@ -3,7 +3,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/web
 
 
 export const AuthorValidationSchema:z.AnyZodObject = z.object({
-  name: z.string().min(3,{message:'Required'}),
+  name: z.string().min(3,{message:'Required and minimum 3 symbols'}),
   birthYear: z.string().regex(/[0-9]+/,'Must be number'),
   genre: z.string().min(1,{message:'Required'}),
   isDead: z.string().min(1,{message:'Required'}),

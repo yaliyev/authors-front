@@ -42,7 +42,7 @@ const AuthorDetail = (props: { params: any }) => {
             <div className="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12">
               <div className={styles.authorDetailButtons}>
                 <button onClick={()=>{router.push(`/authors/${author._id}/editAuthor`)}} className={`btn btn-warning text-white ${styles.authorDetailButton}`}>Edit Author</button>
-                <button className={`btn btn-success text-white ${styles.authorDetailButton}`}>Add book</button>
+                <button onClick={()=>{router.push(`/authors/${author._id}/addBook`)}} className={`btn btn-success text-white ${styles.authorDetailButton}`}>Add book</button>
               </div>
 
               <div className={styles.authorDetail}>
