@@ -28,6 +28,7 @@ const AddBook = (props: Props) => {
     initialValues: {
       name: '',
       year: '',
+      genre: '',
       coverImg: '',
       description: '',
       bookFile: ''
@@ -103,6 +104,16 @@ const AddBook = (props: Props) => {
         </div>
 
         <div className={styles.addAuthorFormElement}>
+          <input name='genre' value={formik.values.genre} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles.addAuthorInputElement} placeholder="Genre:" type="text" />
+        </div>
+
+        <div>
+          {formik.errors.genre && formik.touched.genre && <div style={{ color: 'red' }}>{formik.errors.genre}</div>}
+        </div>
+
+        
+        <div className={styles.addAuthorFormElement}>
+        <div style={{marginBottom:'5px'}}>Cover Image</div>
           <input id='coverImg'
             name='coverImg' value={formik.values.coverImg} onChange={formik.handleChange} onBlur={formik.handleBlur} type='file' className={` ${styles.addAuthorFormButtonElement}`} />
         </div>
@@ -121,6 +132,7 @@ const AddBook = (props: Props) => {
         </div>
 
         <div className={styles.addAuthorFormElement}>
+        <div style={{marginBottom:'5px'}}>Book File</div>
           <input id='bookFile'
             name='bookFile' value={formik.values.bookFile} onChange={formik.handleChange} onBlur={formik.handleBlur} type='file' className={` ${styles.addAuthorFormButtonElement}`} />
         </div>

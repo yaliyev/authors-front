@@ -30,7 +30,6 @@ const AuthorDetail = (props: { params: any }) => {
     async function loadBooks(authorObj:Author) {
       let booksData = await getBooks();
       const authorsBooks = booksData.filter((book:Book,index:number)=>{
-        console.log(book.authorId);
         
         
         
@@ -87,7 +86,7 @@ const AuthorDetail = (props: { params: any }) => {
                       <p className="card-text">Year: {book.year}</p>
                       <p className="card-text">Description:  {book.description}</p>
                       <div className='d-flex justify-content-center '>
-                        <a href={book.bookFile.slice(0,book.bookFile.indexOf('/upload')+7)+`/fl_attachment:${book.name}`+book.bookFile.slice(book.bookFile.indexOf('/upload')+7)} className='btn btn-primary'>Download</a>
+                        <a href={book.bookFile.slice(0,book.bookFile.indexOf('/upload')+7)+`/fl_attachment:${book._id}`+book.bookFile.slice(book.bookFile.indexOf('/upload')+7)} className='btn btn-primary'>Download</a>
                       </div>
                     </div>
                   </div>

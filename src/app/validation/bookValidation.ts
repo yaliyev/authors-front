@@ -14,6 +14,7 @@ import * as z from "zod";
 export const BookValidationSchema: z.AnyZodObject = z.object({
   name: z.string().min(1, { message: 'Required' }),
   year: z.string().regex(/[0-9]+/, 'Must be number'),
+  genre: z.string().min(1,{message:'Required'}),
   coverImg: z.string()
   .regex(/^.*\.(png|jpg|jpeg)$/i,'Invalid file type. Only PNG and JPG and JPEG files are allowed.'),
   description: z.string().min(1, { message: 'Required' }),
