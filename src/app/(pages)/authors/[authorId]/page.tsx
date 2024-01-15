@@ -21,17 +21,29 @@ const AuthorDetail = (props: { params: any }) => {
     async function loadAuthor() {
       let author = await getAuthorById(props.params.authorId);
 
+      
 
-      setAuthor(author);
+      await setAuthor(author);
+
+      loadBooks(author);
     }
-    async function loadBooks() {
+    async function loadBooks(authorObj:Author) {
       let booksData = await getBooks();
+      const authorsBooks = booksData.filter((book:Book,index:number)=>{
+        console.log(book.authorId);
+        
+        
+        
+          if(book.authorId == authorObj._id){
+            return book;
+          }
+      })
 
-      setBooks(booksData);
+      setBooks(authorsBooks);
     }
 
     loadAuthor();
-    loadBooks();
+    
 
   }, [])
 
